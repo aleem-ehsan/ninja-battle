@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 524557789913123042}
   - component: {fileID: 9211309062494582688}
   - component: {fileID: 2364918608549539132}
+  - component: {fileID: 8765047839199236911}
   m_Layer: 9
   m_Name: Shuriken
   m_TagString: Untagged
@@ -63,8 +64,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 186.72865, y: 186.72865, z: 186.72865}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2109308149750183580}
+  m_Children: []
   m_Father: {fileID: 11679677771044244}
   m_LocalEulerAnglesHint: {x: 49.653336, y: 0, z: 0}
 --- !u!33 &524557789913123042
@@ -134,45 +134,13 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!1 &4236716676439799750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2109308149750183580}
-  - component: {fileID: 5739667935793069926}
-  m_Layer: 9
-  m_Name: Mesh Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2109308149750183580
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4236716676439799750}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6840393, y: 0.6840393, z: 0.6840393}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3355553354509565772}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5739667935793069926
+--- !u!64 &8765047839199236911
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4236716676439799750}
+  m_GameObject: {fileID: 1677897734017199739}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -242,7 +210,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.33421147
+  m_Radius: 0.4596929
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3653456609945788638
 Rigidbody:

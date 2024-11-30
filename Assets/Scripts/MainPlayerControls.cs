@@ -9,6 +9,9 @@ public class MainPlayerControls : MonoBehaviour
     [Header("Arrow Settings")]
     public Transform pivotArrow; // Use CubePivot for both rotation and scaling
 
+    [Header("Knife Settings")]
+    public GameObject knife; // Assign your knife GameObject in the Inspector
+
     private Rigidbody rb;
     private Vector2 startPosition;
     private Vector2 dragDirection;
@@ -23,11 +26,18 @@ public class MainPlayerControls : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         originalFixedDeltaTime = Time.fixedDeltaTime; // Save the original physics update rate
+
+        // Ensure the knife is initially disabled
+        if (knife != null)
+        {
+            knife.SetActive(false);
+        }
     }
 
     private void Update()
     {
         HandleTouchInput();
+        HandleKnifeState();
     }
 
     private void HandleTouchInput()
@@ -163,4 +173,35 @@ public class MainPlayerControls : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void HandleKnifeState()
+    {
+        if (knife == null) return;
+
+        if (!isGrounded && rb.velocity.y != 0) // Player is in the air
+        {
+            knife.SetActive(true);
+        }
+        else if (isGrounded) // Player lands on a surface
+        {
+            knife.SetActive(false);
+        }
+    }
+
+    // check collision with blade
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("blade"))
+        {
+            // check if player is in not in air then print gameoer
+            if (!isGrounded && !isOnWall )
+            {
+                print("Sliced");
+            }
+            else
+                Debug.Log("Game Over");
+            
+        }
+    }
+    
 }
