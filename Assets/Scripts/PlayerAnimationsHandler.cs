@@ -10,6 +10,8 @@ public class PlayerAnimationsHandler : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private MainPlayerControls mainPlayerControls; 
+    [SerializeField] private Transform player_Transform; 
+
 
 
     // Start is called before the first frame update
@@ -31,7 +33,26 @@ public class PlayerAnimationsHandler : MonoBehaviour
         // }
 
         animator.SetBool("isGrounded", mainPlayerControls.isGrounded);
-        animator.SetBool("isOnWall", mainPlayerControls.isOnWall);
+
+    
+
+        if(mainPlayerControls.isOnWall){
+
+                animator.SetBool("isOnWall", true);
+            if (player_Transform.position.x > 0)  // wall Right
+            {
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+            else // wall Left
+            {
+                transform.rotation = Quaternion.Euler(0, -90, 0);
+            }
+        }else{
+            animator.SetBool("isOnWall", false);
+             // not on wall so reset rotation
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
 
     }
 

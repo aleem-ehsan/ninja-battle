@@ -12,7 +12,11 @@ namespace BzKovSoft.ObjectSlicer.EventHandlers
 		[SerializeField] private float forceImpact;  
 
 		void Awake(){
-				forceImpact = 2;
+			if (forceImpact == 0)
+			{
+				forceImpact = 8;
+				
+			}
 		}
 
 		public void ObjectSliced(GameObject original, GameObject resultNeg, GameObject resultPos)
@@ -36,6 +40,9 @@ namespace BzKovSoft.ObjectSlicer.EventHandlers
 			bRigid.angularVelocity = oRigid.angularVelocity * forceImpact;
 			aRigid.velocity = oRigid.velocity * forceImpact;
 			bRigid.velocity = oRigid.velocity * forceImpact;
+
+			aRigid.AddTorque(Random.insideUnitSphere * forceImpact, ForceMode.Impulse);
+			bRigid.AddTorque(Random.insideUnitSphere * forceImpact, ForceMode.Impulse);
 		}
 	}
 }
