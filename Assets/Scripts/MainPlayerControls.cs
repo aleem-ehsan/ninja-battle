@@ -17,7 +17,7 @@ public class MainPlayerControls : MonoBehaviour
     private float originalFixedDeltaTime;
 
     public bool isOnWall = false;
-    public bool isGrounded = false; 
+    public bool isGrounded = false;
 
     private void Start()
     {
@@ -89,8 +89,9 @@ public class MainPlayerControls : MonoBehaviour
             float angle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg;
             pivotArrow.rotation = Quaternion.Euler(0, 0, angle - 90); // Adjust for default orientation
 
-            // Scale CubePivot based on drag distance, with 2x multiplier
-            float scaleY = Mathf.Clamp(dragDirection.magnitude * 8, 0.1f, maxDragDistance * 8); // Ensure minimum scale is 0.1
+            // Scale CubePivot based on drag distance, halved
+            float orthographicAdjustment = Camera.main.orthographicSize / 5f; // Normalize scaling for orthographic camera
+            float scaleY = Mathf.Clamp(dragDirection.magnitude * orthographicAdjustment * 0.5f, 0.1f, maxDragDistance * 0.5f); // Scale reduced by half
             pivotArrow.localScale = new Vector3(pivotArrow.localScale.x, scaleY, pivotArrow.localScale.z);
         }
     }
@@ -142,7 +143,7 @@ public class MainPlayerControls : MonoBehaviour
 
             isOnWall = true;
         }
-        if(collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground"))
         {
             isGrounded = true;
         }
@@ -162,15 +163,4 @@ public class MainPlayerControls : MonoBehaviour
             isGrounded = false;
         }
     }
-
-
-
-    // private void OnCollisionStay(Collision collision)
-    // {
-    //     if (collision.gameObject.CompareTag("wall"))
-    //     {
-    //         // Keep the player stuck to the wall, prevent any movement
-    //         rb.velocity = Vector2.zero;
-    //     }
-    // }
 }
