@@ -35,6 +35,8 @@ namespace BzKovSoft.CharacterSlicer.Samples
 
 		public bool IsDead { get; private set; }
 
+
+
 		/// <summary>
 		/// If your code do not use SliceId, it can relay on delay between last slice and new.
 		/// If real delay is less than this value, slice will be ignored
@@ -95,6 +97,10 @@ namespace BzKovSoft.CharacterSlicer.Samples
 
 		protected override void OnSliceFinished(BzSliceTryResult result)
 		{
+			UnityEngine.Debug.Log("Slice finished: " + result.sliced);
+
+
+
 			if (!result.sliced)
 				return;
 
@@ -122,6 +128,13 @@ namespace BzKovSoft.CharacterSlicer.Samples
 			drawText += addData.stopwatch.ElapsedMilliseconds.ToString() + " - " + gameObject.name + Environment.NewLine;
 
 			IsDead = true;
+
+			// set the Enemy Script's variable to true
+
+
+
+			// invoke events to disable the Enemy Script 
+
 			resultNeg.IsDead = IsDead;
 			resultPos.IsDead = IsDead;
 
@@ -277,6 +290,10 @@ namespace BzKovSoft.CharacterSlicer.Samples
 			{
 				var rigid = rigidsArr[i];
 				rigid.isKinematic = false;
+
+				rigid.AddTorque( angularVelocityContinue * 100, ForceMode.VelocityChange);
+
+				UnityEngine.Debug.Log("Torque added: " + rigid.velocity);
 			}
 			Profiler.EndSample();
 		}

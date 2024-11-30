@@ -23,6 +23,8 @@ namespace BzKovSoft.ObjectSlicer.Samples
 					continue;
 
 				go.AddComponent<KnifeSliceableAsync>();
+
+				
 			}
 		}
 	}

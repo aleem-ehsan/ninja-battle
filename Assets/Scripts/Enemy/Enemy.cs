@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BzKovSoft.ObjectSlicer;
+using BzKovSoft.ObjectSlicer.Polygon;
+using BzKovSoft.ObjectSlicer.Samples;
 
-public class Enemy : MonoBehaviour
+namespace BzKovSoft.CharacterSlicer.Samples
+{
+public class Enemy : MonoBehaviour 
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Range range;
@@ -12,6 +17,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Transform playerTransform;
 
+    public bool isDead = false;
+
+    IDeadable _enemy;
 
     void Awake(){
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -20,13 +28,19 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _enemy = GetComponent<IDeadable>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("Attack", range.isInRange);
+        if(! _enemy.IsDead ){
+            animator.SetBool("Attack", range.isInRange);
+            Debug.Log("Enemy is not Dead");
+        }else{
+            range.gameObject.SetActive(false);
+            Debug.Log("Enemy is Dead");
+        }
     }
 
     public void ShootBlade(){
@@ -37,4 +51,11 @@ public class Enemy : MonoBehaviour
 
     }
 
+
+    public void EnemyDie(){
+        Debug.Log("Enemy Die");
+        isDead = true;
+    }
+
+}
 }

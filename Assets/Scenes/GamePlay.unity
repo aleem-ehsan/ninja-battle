@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1802833, g: 0.22571462, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571418, b: 0.30692208, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2575,6 +2575,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228783145}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1231761400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8116988368946764734, guid: 77b8395a588eeab4f90c68fc2d3515ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 3436411594645072963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1231761404
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231761400}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
 --- !u!1 &1255119508
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,7 +4197,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8116988368946764734, guid: 77b8395a588eeab4f90c68fc2d3515ab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1231761404}
   m_SourcePrefab: {fileID: 100100000, guid: 77b8395a588eeab4f90c68fc2d3515ab, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
