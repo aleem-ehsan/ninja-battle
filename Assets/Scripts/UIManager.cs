@@ -5,14 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
+    public static UIManager instance;
     public GameObject MainPanel;
     public GameObject GamePlayPanel;
-
-    
-    [Space(10)]
     public GameObject GameOverPanel;
     public GameObject GameWinPanel;
+
+    [Space(10)]
+    public GameObject[] EnemyHUD;
+
+
+
+    private void Awake()
+        {
+            print("UI Manager Awake");
+            instance = this;
+        }
 
     void Start()
         {
@@ -36,5 +44,11 @@ public class UIManager : MonoBehaviour
     public void ReplayBtnClicked()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+    public void DecreaseEnemyHUD(int EnemyCount)
+        {
+            EnemyHUD[EnemyCount-1].SetActive(false);
+            
         }
 }

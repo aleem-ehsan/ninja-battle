@@ -68,7 +68,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: c2572b604c8058b4b9ad01325d0feb33, type: 3}
   m_Controller: {fileID: 9100000, guid: 43e56eae2d5f7bb40b474f318db6fefa, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -108,8 +108,7 @@ MonoBehaviour:
   _sliceId: 0
   _lastSliceTime: -3.4028235e+38
   _maxSliceCount: 3
-  _bloodPrefub: {fileID: 1519314318387940, guid: cee7e6e67c3be35489149da56707d602,
-    type: 3}
+  _bloodPrefub: {fileID: 0}
   _prefubDirection: {x: 0, y: 0, z: 0}
   _convertToRagdoll: 1
   _alignPrefSize: 0
@@ -241,7 +240,7 @@ GameObject:
   - component: {fileID: 6021233093959342019}
   - component: {fileID: 6163422578294567570}
   - component: {fileID: 3297749861432936370}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +281,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.799695, y: 7.192716, z: 1.8714386}
+  m_Size: {x: 9.799695, y: 10.070784, z: 1.8714386}
   m_Center: {x: 0, y: 0.6549728, z: 0}
 --- !u!114 &3297749861432936370
 MonoBehaviour:

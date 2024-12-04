@@ -39,6 +39,9 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy is not Dead");
         }else{
             range.gameObject.SetActive(false);
+            // GameManager.instance.EnemyKilled();
+            // disable this script
+            this.gameObject.GetComponent<Enemy>().enabled = false;
             Debug.Log("Enemy is Dead");
         }
     }
@@ -50,6 +53,7 @@ public class Enemy : MonoBehaviour
         blade.GetComponent<Blade>().targetTransform = playerTransform; // set the target transform of the blade to the player transform
 
     }
+    
 
 
     public void EnemyDie(){

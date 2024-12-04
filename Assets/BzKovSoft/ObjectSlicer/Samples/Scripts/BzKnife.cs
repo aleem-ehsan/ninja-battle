@@ -50,6 +50,8 @@ namespace BzKovSoft.ObjectSlicer.Samples
 		public void BeginNewSlice()
 		{
 			SliceID = SliceIdProvider.GetNewSliceId();
+
+			Debug.Log("enemy died: " + SliceID);
 		}
 	}
 }

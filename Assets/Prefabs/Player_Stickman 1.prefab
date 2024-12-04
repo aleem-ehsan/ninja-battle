@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8300707365094078014}
-  - component: {fileID: 6547942520529398609}
+  - component: {fileID: 1074414963900544700}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 1148283789400913030}
   m_Father: {fileID: 5490207907660883633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6547942520529398609
+--- !u!114 &1074414963900544700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187331877255030323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88356141cd6795f46972a3dc3fd86e5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 18aeed6eec735bf4185178d586e91f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPlayerControls: {fileID: 6214501608195984144}
+  mainPlayerControls: {fileID: 8149002729091979317}
   player_Transform: {fileID: 5490207907660883633}
 --- !u!1 &1369614352881274026
 GameObject:
@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 5947548960059199990}
   - component: {fileID: 5927457338315128726}
   - component: {fileID: 5915739741941779303}
+  - component: {fileID: 5903944252469938940}
   m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
@@ -228,8 +229,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15855354, y: 0.16533835, z: 0.3386342}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.15855354, y: 4.5098424, z: 1.2145425}
+  m_Center: {x: 0, y: 9.987567e-14, z: -0.43795425}
+--- !u!54 &5903944252469938940
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116988368946764734}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
 --- !u!1 &8185598620068454478
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,9 +267,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5490207907660883633}
-  - component: {fileID: 6214501608195984144}
   - component: {fileID: 2986322647045302353}
   - component: {fileID: 3822999948543905416}
+  - component: {fileID: 8149002729091979317}
   m_Layer: 8
   m_Name: Player_Stickman 1
   m_TagString: Player
@@ -267,24 +295,6 @@ Transform:
   - {fileID: 5947548960059199990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6214501608195984144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8185598620068454478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ffb55af0ebb6ac4b877918593ec282e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootForce: 15
-  maxDragDistance: 2
-  pivotArrow: {fileID: 2723060806852223104}
-  knife: {fileID: 0}
-  isOnWall: 0
-  isGrounded: 0
 --- !u!54 &2986322647045302353
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -335,6 +345,24 @@ CapsuleCollider:
   m_Height: 2.459636
   m_Direction: 1
   m_Center: {x: 0, y: 0.11685145, z: 0.066784725}
+--- !u!114 &8149002729091979317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185598620068454478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b006c326588465b48be454defa7199ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootForce: 10
+  maxDragDistance: 5
+  pivotArrow: {fileID: 2723060806852223104}
+  knife: {fileID: 8116988368946764734}
+  isOnWall: 0
+  isGrounded: 0
 --- !u!1001 &604959512636019565
 PrefabInstance:
   m_ObjectHideFlags: 0
