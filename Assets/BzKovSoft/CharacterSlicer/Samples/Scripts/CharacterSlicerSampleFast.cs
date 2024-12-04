@@ -291,7 +291,8 @@ namespace BzKovSoft.CharacterSlicer.Samples
 				var rigid = rigidsArr[i];
 				rigid.isKinematic = false;
 
-				rigid.AddTorque( angularVelocityContinue * 100, ForceMode.VelocityChange);
+				// Apply upward force to make the rigidbodies bounce in opposite directions
+				rigid.AddForce(Vector3.up *10, ForceMode.Impulse);
 
 				UnityEngine.Debug.Log("Torque added: " + rigid.velocity);
 			}

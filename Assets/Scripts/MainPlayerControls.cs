@@ -22,6 +22,8 @@ public class MainPlayerControls : MonoBehaviour
     public bool isOnWall = false;
     public bool isGrounded = false;
 
+    public bool IsInAir => !isGrounded && !isOnWall;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -194,9 +196,10 @@ public class MainPlayerControls : MonoBehaviour
         if (other.gameObject.CompareTag("blade"))
         {
             // check if player is in not in air then print gameoer
-            if (!isGrounded && !isOnWall )
+            if (IsInAir)
             {
-                print("Sliced");
+                print("Slice the Blade");
+
             }
             else
                 Debug.Log("Game Over");

@@ -10,6 +10,9 @@ public class Blade : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
 
+    [SerializeField] private Animation animation;
+
+
     void Awake(){
         rb = GetComponent<Rigidbody>();
     }
@@ -26,8 +29,36 @@ public class Blade : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if(other.CompareTag("wall")  || other.CompareTag("ground") ){
+            StopBlade();
+        }
+        // else if(other.CompareTag("Player")){
+        //     Debug.Log("Do Nothing with blade");
+        //     MainPlayerControls mainPlayerControls = other.GetComponent<MainPlayerControls>();
+        //     if(mainPlayerControls.IsInAir){
+        //         Debug.Log("Slice the Blade");
+        //     }
+        // }
+        else if(other.CompareTag("knife") ){
+                Debug.Log("Blade collided with knife");
+        }else if(other.CompareTag("Player") ){
+                Debug.Log("Player collided with Player");
+        }else{
 
+            Debug.Log("Blade collided with " + other.name);
+            Destroy(gameObject);
+
+        }
+
+    }
+
+    private void StopBlade(){
+        // make it static
+            // rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+            animation.Stop();
+
+            Destroy(gameObject , 5f);
     }
     
 }
