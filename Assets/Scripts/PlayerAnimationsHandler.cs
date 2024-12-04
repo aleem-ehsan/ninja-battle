@@ -57,6 +57,15 @@ public class PlayerAnimationsHandler : MonoBehaviour
     }
 
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            animator.SetBool("isDead", true);
+        }
+    }
+
+
   
 
 

@@ -22,6 +22,8 @@ public class MainPlayerControls : MonoBehaviour
     public bool isOnWall = false;
     public bool isGrounded = false;
 
+    public bool isInAir = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,6 +40,7 @@ public class MainPlayerControls : MonoBehaviour
     {
         HandleTouchInput();
         HandleKnifeState();
+
     }
 
     private void HandleTouchInput()
@@ -152,11 +155,16 @@ public class MainPlayerControls : MonoBehaviour
             rb.useGravity = false;
 
             isOnWall = true;
+
+            isInAir = false;
         }
         if (collision.gameObject.CompareTag("ground"))
         {
             isGrounded = true;
+            isInAir = false;
         }
+
+        
     }
 
     private void OnCollisionExit(Collision collision)
@@ -172,6 +180,10 @@ public class MainPlayerControls : MonoBehaviour
         {
             isGrounded = false;
         }
+
+        
+            isInAir = !(isGrounded && isOnWall);
+        
     }
 
     private void HandleKnifeState()
