@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,41 +12,59 @@ public class UIManager : MonoBehaviour
     [Space(10)]
     public GameObject[] EnemyHUD;
 
-
+    public bool isGameStart { get; private set; } = false; // Track game state
 
     private void Awake()
-        {
-            print("UI Manager Awake");
-            instance = this;
-        }
+    {
+        print("UI Manager Awake");
+        instance = this;
+    }
 
     void Start()
-        {
-            Initialize();
-        }
+    {
+        Initialize();
+    }
 
     void Initialize()
-        {
-            MainPanel.SetActive(true);
-            GamePlayPanel.SetActive(false);
-            // GameOverPanel.SetActive(false);
-            // GameWinPanel.SetActive(false);
-        }
+    {
+        isGameStart = false; // Game starts as inactive
+        MainPanel.SetActive(true);
+        GamePlayPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
+        GameWinPanel.SetActive(false);
+    }
 
     public void OnPlayButtonClicked()
-        {
-            MainPanel.SetActive(false);
-            GamePlayPanel.SetActive(true);
-        }
+    {
+        MainPanel.SetActive(false);
+        GamePlayPanel.SetActive(true);
+        isGameStart = true; // Set game to active when play starts
+    }
 
     public void ReplayBtnClicked()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void DecreaseEnemyHUD(int EnemyCount)
-        {
-            EnemyHUD[EnemyCount-1].SetActive(false);
-            
-        }
+    {
+        EnemyHUD[EnemyCount - 1].SetActive(false);
+    }
+
+    public void GameLoose()
+    {
+        Time.timeScale = 0;
+        isGameStart = false; // Game is no longer active
+        GamePlayPanel.SetActive(false);
+        GameOverPanel.SetActive(true);
+    }
+
+    public void GameWin()
+    {
+        Time.timeScale = 0;
+        isGameStart = false; // Game is no longer active
+        GamePlayPanel.SetActive(false);
+        GameWinPanel.SetActive(true);
+    }
 }

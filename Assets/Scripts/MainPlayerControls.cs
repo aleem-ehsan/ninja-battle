@@ -42,28 +42,31 @@ public class MainPlayerControls : MonoBehaviour
         HandleKnifeState();
     }
 
-    private void HandleTouchInput()
+   private void HandleTouchInput()
+{
+    if (!UIManager.instance.isGameStart) return; // Only process input if the game is active
+
+    if (Input.touchCount > 0)
     {
-        if (Input.touchCount > 0)
+        Touch touch = Input.GetTouch(0);
+
+        switch (touch.phase)
         {
-            Touch touch = Input.GetTouch(0);
+            case TouchPhase.Began:
+                OnDragStart(touch.position);
+                break;
 
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    OnDragStart(touch.position);
-                    break;
+            case TouchPhase.Moved:
+                OnDragMove(touch.position);
+                break;
 
-                case TouchPhase.Moved:
-                    OnDragMove(touch.position);
-                    break;
-
-                case TouchPhase.Ended:
-                    OnDragRelease();
-                    break;
-            }
+            case TouchPhase.Ended:
+                OnDragRelease();
+                break;
         }
     }
+}
+
 
     private void OnDragStart(Vector2 touchPosition)
     {
@@ -83,30 +86,29 @@ public class MainPlayerControls : MonoBehaviour
         Time.timeScale = 0.1f;
         Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
     }
+private void OnDragMove(Vector2 touchPosition)
+{
+    if (!isDragging) return;
 
-    private void OnDragMove(Vector2 touchPosition)
+    Vector2 currentPosition = GetWorldPositionFromScreen(touchPosition);
+    dragDirection = currentPosition - startPosition; // Calculate drag direction
+
+    if (dragDirection.magnitude > maxDragDistance)
+        dragDirection = dragDirection.normalized * maxDragDistance;
+
+    // Update CubePivot rotation and scale
+    if (pivotArrow != null)
     {
-        if (!isDragging) return;
+        // Rotate the CubePivot to point in the correct drag direction
+        float angle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg;
+        pivotArrow.rotation = Quaternion.Euler(0, 0, angle - 90); // Adjust for default orientation
 
-        Vector2 currentPosition = GetWorldPositionFromScreen(touchPosition);
-        dragDirection = currentPosition - startPosition; // Calculate drag direction
-
-        if (dragDirection.magnitude > maxDragDistance)
-            dragDirection = dragDirection.normalized * maxDragDistance;
-
-        // Update CubePivot rotation and scale
-        if (pivotArrow != null)
-        {
-            // Rotate the CubePivot to point in the correct drag direction
-            float angle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg;
-            pivotArrow.rotation = Quaternion.Euler(0, 0, angle - 90); // Adjust for default orientation
-
-            // Scale CubePivot based on drag distance, halved
-            float orthographicAdjustment = Camera.main.orthographicSize / 5f; // Normalize scaling for orthographic camera
-            float scaleY = Mathf.Clamp(dragDirection.magnitude * orthographicAdjustment * 0.5f, 0.1f, maxDragDistance * 0.5f); // Scale reduced by half
-            pivotArrow.localScale = new Vector3(pivotArrow.localScale.x, scaleY, pivotArrow.localScale.z);
-        }
+        // Scale CubePivot based on drag distance, halved
+        float orthographicAdjustment = Camera.main.orthographicSize / 5f; // Normalize scaling for orthographic camera
+        float scaleY = Mathf.Clamp(dragDirection.magnitude * orthographicAdjustment * 0.25f, 0.1f, maxDragDistance * 0.25f); // Scale reduced to half
+        pivotArrow.localScale = new Vector3(pivotArrow.localScale.x, scaleY, pivotArrow.localScale.z);
     }
+}
 
     private void OnDragRelease()
     {
@@ -202,7 +204,10 @@ public class MainPlayerControls : MonoBehaviour
 
             }
             else
-                Debug.Log("Game Over");
+                {
+                    Debug.Log("Game Over");
+                    UIManager.instance.GameLoose();
+                }
             
         }
     }
