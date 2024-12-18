@@ -4,6 +4,7 @@ using BzKovSoft.ObjectSlicer.Samples;
 using System;
 using System.Collections;
 using System.Diagnostics;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -37,11 +38,15 @@ namespace BzKovSoft.CharacterSlicer.Samples
 
 
 
+
 		/// <summary>
 		/// If your code do not use SliceId, it can relay on delay between last slice and new.
 		/// If real delay is less than this value, slice will be ignored
 		/// </summary>
 		public float delayBetweenSlices = 1f;
+		[Header("Impact Force")]
+		[Tooltip("Slicing force")]
+		[SerializeField] private float impactForce = 10f;
 
 		public void Slice(Plane plane, int sliceId, Action<BzSliceTryResult> callBack)
 		{
@@ -292,7 +297,9 @@ namespace BzKovSoft.CharacterSlicer.Samples
 				rigid.isKinematic = false;
 
 				// Apply upward force to make the rigidbodies bounce in opposite directions
-				rigid.AddForce(Vector3.up *10, ForceMode.Impulse);
+				// rigid.AddForce(Vector3.up *10, ForceMode.Impulse);
+				rigid.AddForce(Vector3.up *impactForce, ForceMode.Impulse);
+				rigid.AddTorque(Vector3.up *impactForce, ForceMode.Impulse);
 
 				UnityEngine.Debug.Log("Torque added: " + rigid.velocity);
 			}

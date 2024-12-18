@@ -12,6 +12,9 @@ public class Blade : MonoBehaviour
 
     [SerializeField] private Animation animation;
 
+    [SerializeField] private Collider collider;
+
+
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -57,6 +60,10 @@ public class Blade : MonoBehaviour
             // rb.velocity = Vector3.zero;
             rb.isKinematic = true;
             animation.Stop();
+
+            // ignore collision with player
+            Physics.IgnoreCollision(collider, targetTransform.GetComponent<Collider>(), true);
+
 
             Destroy(gameObject , 5f);
     }

@@ -160,6 +160,8 @@ private void OnDragMove(Vector2 touchPosition)
         if (collision.gameObject.CompareTag("ground"))
         {
             isGrounded = true;
+
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -206,7 +208,7 @@ private void OnDragMove(Vector2 touchPosition)
             else
                 {
                     Debug.Log("Game Over");
-                    UIManager.instance.GameLoose();
+                    // UIManager.instance.GameLoose();
                 }
             
         }

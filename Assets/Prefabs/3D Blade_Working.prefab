@@ -86,7 +86,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4596929
+  m_Radius: 0.33840942
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3653456609945788638
 Rigidbody:
@@ -130,6 +130,7 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   speed: 5
   animation: {fileID: 4422557757855309528}
+  collider: {fileID: 107234099166590391}
 --- !u!1001 &1402360016113595864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3831578e3316d041b73e0e29a8c2dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceImpact: 5
+  forceImpact: 1
 --- !u!114 &5758399137578467369
 MonoBehaviour:
   m_ObjectHideFlags: 0
